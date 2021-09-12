@@ -35,10 +35,45 @@ class Products with ChangeNotifier {
       imageUrl:
           'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Cast-Iron-Pan.jpg/1024px-Cast-Iron-Pan.jpg',
     ),
+    Product(
+      id: 'p5',
+      title: 'Iphone 12',
+      description: 'Prepare any meal you want.',
+      price: 999.99,
+      imageUrl:
+          'https://www.zdnet.com/a/hub/i/r/2020/11/23/396499cd-fd42-4765-ae71-80332848cbd4/thumbnail/770x433/58be528b58e890b6b3a9f1748c22979b/iphone-12-pro-max1.jpg',
+    ),
+    Product(
+      id: 'p6',
+      title: 'Headphones & Earbuds',
+      description: 'Prepare any meal you want.',
+      price: 999.99,
+      imageUrl:
+          'https://usa-oss.edifier.com/Uploads/images/2021/07/19/2021071910430016266625805340.jpg',
+    ),
   ];
 
+  var _showFavoriteOnly = false;
+
   List<Product> get items {
+    if (_showFavoriteOnly) {
+      return _items.where((element) => element.isFavorite).toList();
+    }
     return [..._items];
+  }
+
+  showFavoriteOnly() {
+    _showFavoriteOnly = true;
+    notifyListeners();
+  }
+
+  showFavoriteAll() {
+    _showFavoriteOnly = false;
+    notifyListeners();
+  }
+
+  List<Product> get favoriteItems {
+    return _items.where((element) => element.isFavorite).toList();
   }
 
   Product findById(String id) {

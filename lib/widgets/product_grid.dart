@@ -5,18 +5,23 @@ import 'package:shop/widgets/product_item.dart';
 
 class ProductGrid extends StatelessWidget {
   //final List<Product> loadedProducts = [];
+  final bool showOnlyFavorite;
+
+  ProductGrid(this.showOnlyFavorite);
 
   @override
   Widget build(BuildContext context) {
     final productsData = Provider.of<Products>(context);
 
-    final products = productsData.items;
+    final products =
+        showOnlyFavorite ? productsData.favoriteItems : productsData.items;
 
     return GridView.builder(
       padding: const EdgeInsets.all(10.0),
       itemCount: products.length,
-      itemBuilder: (ctx, i) => ChangeNotifierProvider(
-        create: (ctx) => products[i],
+      itemBuilder: (ctx, i) => ChangeNotifierProvider.value(
+        //This will work if the data recycle in long list.
+        value: products[i],
         child: ProductItem(
             //products[i].id,
             //products[i].title,
