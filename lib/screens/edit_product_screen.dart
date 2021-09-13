@@ -90,7 +90,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
     }
   }
 
-  void _saveForm() {
+  Future<void> _saveForm() async {
     final isValid = _form.currentState!.validate();
     if (!isValid) {
       return;
@@ -102,21 +102,23 @@ class _EditProductScreenState extends State<EditProductScreen> {
     });
 
     if (_editedProduct.id != '') {
-      Provider.of<Products>(context, listen: false)
+      await Provider.of<Products>(context, listen: false)
           .updateProduct(_editedProduct.id, _editedProduct);
       setState(() {
         _isLoading = false;
       });
+      Navigator.of(context).pop();
     } else {
-      Provider.of<Products>(context, listen: false)
-          .addProduct(_editedProduct)
-          .then((_) {
+      try {
+        await Provider.of<Products>(context, listen: false)
+            .addProduct(_editedProduct);
         setState(() {
           _isLoading = false;
         });
+
         Navigator.of(context).pop();
-      }).catchError((error) {
-        return showDialog(
+      } catch (e) {
+        showDialog(
             context: context,
             builder: (ctx) {
               return AlertDialog(
@@ -125,18 +127,17 @@ class _EditProductScreenState extends State<EditProductScreen> {
                 actions: <Widget>[
                   TextButton(
                       onPressed: () {
+                        setState(() {
+                          _isLoading = false;
+                        });
+
                         Navigator.of(context).pop();
                       },
                       child: Text("Ok"))
                 ],
               );
-            }).then((_) {
-          setState(() {
-            _isLoading = false;
-          });
-          Navigator.of(context).pop();
-        });
-      });
+            });
+      }
     }
   }
 
