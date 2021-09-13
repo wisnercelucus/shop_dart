@@ -38,7 +38,7 @@ class Products with ChangeNotifier {
     Product(
       id: 'p5',
       title: 'Iphone 12',
-      description: 'Prepare any meal you want.',
+      description: 'Use the latest Iphone to show your great taste.',
       price: 999.99,
       imageUrl:
           'https://www.zdnet.com/a/hub/i/r/2020/11/23/396499cd-fd42-4765-ae71-80332848cbd4/thumbnail/770x433/58be528b58e890b6b3a9f1748c22979b/iphone-12-pro-max1.jpg',
@@ -46,7 +46,7 @@ class Products with ChangeNotifier {
     Product(
       id: 'p6',
       title: 'Headphones & Earbuds',
-      description: 'Prepare any meal you want.',
+      description: 'Listen to music and podcast everywhere.',
       price: 999.99,
       imageUrl:
           'https://usa-oss.edifier.com/Uploads/images/2021/07/19/2021071910430016266625805340.jpg',
