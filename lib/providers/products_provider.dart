@@ -82,10 +82,10 @@ class Products with ChangeNotifier {
     return _items.firstWhere((item) => item.id == id);
   }
 
-  void addProduct(Product product) {
+  Future<void> addProduct(Product product) {
     final url = Uri.https(
         'flutter-shop-cd593-default-rtdb.firebaseio.com', '/products.json');
-    http
+    return http
         .post(
       url,
       body: json.encode({
@@ -96,17 +96,19 @@ class Products with ChangeNotifier {
         'isFavorite': product.isFavorite,
       }),
     )
-        .then((value) {
+        .then((response) {
       final productToAdd = Product(
-          id: DateTime.now().toString(),
+          id: json.decode(response.body)['name'],
           title: product.title,
           description: product.description,
           price: product.price,
           imageUrl: product.imageUrl);
       _items.add(productToAdd);
       notifyListeners();
+    }).catchError((error) {
+      print(error);
+      throw error;
     });
-
     //_items.insert(0, productToAdd);
   }
 
