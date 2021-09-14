@@ -178,12 +178,13 @@ class _EditProductScreenState extends State<EditProductScreen> {
                       },
                       onSaved: (value) {
                         _editedProduct = Product(
-                            title: value!,
-                            price: _editedProduct.price,
-                            description: _editedProduct.description,
-                            imageUrl: _editedProduct.imageUrl,
-                            id: _editedProduct.id,
-                            isFavorite: _editedProduct.isFavorite);
+                          title: value!,
+                          price: _editedProduct.price,
+                          description: _editedProduct.description,
+                          imageUrl: _editedProduct.imageUrl,
+                          id: _editedProduct.id,
+                          //isFavorite: _editedProduct.isFavorite
+                        );
                       },
                     ),
                     TextFormField(
@@ -215,7 +216,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                           description: _editedProduct.description,
                           imageUrl: _editedProduct.imageUrl,
                           id: _editedProduct.id,
-                          isFavorite: _editedProduct.isFavorite,
+                          //isFavorite: _editedProduct.isFavorite,
                         );
                       },
                     ),
@@ -241,7 +242,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                           description: value!,
                           imageUrl: _editedProduct.imageUrl,
                           id: _editedProduct.id,
-                          isFavorite: _editedProduct.isFavorite,
+                          //isFavorite: _editedProduct.isFavorite,
                         );
                       },
                     ),
@@ -302,7 +303,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                                 description: _editedProduct.description,
                                 imageUrl: value!,
                                 id: _editedProduct.id,
-                                isFavorite: _editedProduct.isFavorite,
+                                //isFavorite: _editedProduct.isFavorite,
                               );
                             },
                           ),
